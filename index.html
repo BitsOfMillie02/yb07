@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yearbook 2007</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: black url('stars-bg.jpg') repeat;
+      color: #f8f8f8;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(90deg, #4dc4bc, #51d665, #dbd834);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #fff0;
+      color: white;
+      box-shadow: 0 2px 25px #111a;
+    }
+    header img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      border: 2px solid #52b6e8;
+      box-shadow: 0 0 10px #8e44ad80;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      color: #fff;
+      text-shadow: 0 0 12px #dff6ff, 0 2px 8px #fff8;
+      margin: 0;
+    }
+    header small {
+      font-size: .95rem;
+      color: #b3f9ff;
+      display: block;
+      letter-spacing: 0.02em;
+    }
+    nav {
+      margin-left: 30px;
+    }
+    nav button {
+      background: none;
+      border: 2px solid #acf1e6;
+      border-radius: 25px;
+      padding: 8px 18px;
+      color: #fff;
+      margin-left: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+    nav button.active,
+    nav button:hover {
+      background: linear-gradient(90deg, #4dc4bc, #51d665 70%, #dbd834);
+      color: #191825;
+      box-shadow: 0 0 11px #aff4f5cc;
+      border-color: #fff;
+    }
+    .school-banner {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 6px 24px #8e44ad22;
+      border-bottom: 4px solid #3498db;
+    }
+    .school-info {
+      text-align: center;
+      padding: 22px 10px;
+      background: linear-gradient(0deg, #141414e0 88%, transparent);
+      border-bottom: 3px solid #7effff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #f0e9ff;
+      letter-spacing: 0.03em;
+    }
+    .school-info h2 {
+      color: #7effb4;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    .profiles,
+    .events {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: none;
+    }
+    .profiles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      justify-content: center;
+    }
+    .student-card {
+      background: #191825ee;
+      border: 4px solid transparent;
+      border-radius: 17px;
+      border-image: linear-gradient(45deg, #4dc4bc, #51d665 60%, #dbd834) 1;
+      padding: 22px 18px 18px 18px;
+      text-align: center;
+      box-shadow: 0 0 20px #8e44ad33, 0 4px 14px #0008;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .student-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 32px #8e44ad60, 0 6px 12px #19182580;
+      z-index: 2;
+    }
+    .photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      margin: 0 auto 12px auto;
+      background: #222c42;
+      border: 3px solid rgb(204, 220, 240);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: #7ee7ff;
+      font-weight: bold;
+      overflow: hidden;
+      box-shadow: 0 0 10px #191825;
+    }
+    .student-card img.photo {
+      object-fit: cover;
+      background: #101a24;
+      border: 3px solid #448dad;
+      color: #fff0;
+    }
+    .student-card h3 {
+      margin-bottom: 4px;
+      margin-top: 0;
+      font-weight: 700;
+      color: #bfe8ff;
+      font-size: 1.18rem;
+      letter-spacing: 0.02em;
+    }
+    .quote-bubble,
+    .quote {
+      margin: 11px 0 10px 0;
+      padding: 12px 12px 13px 13px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #2e224b 80%, #6f59ad 100%);
+      border: 2px solid #d4ea68;
+      color: #fff;
+      font-style: italic;
+      font-size: .96rem;
+      position: relative;
+      box-shadow: 0 2px 13px #ff7eb325;
+    }
+    .quote-bubble::after,
+    .quote::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 25px;
+      border-width: 10px 10px 0 10px;
+      border-style: solid;
+      border-color: #d4e02f transparent transparent transparent;
+    }
+    .social-icons {
+      margin-top: 10px;
+    }
+    .social-icons a {
+      margin: 0 8px;
+      font-size: 1.5rem;
+      color: #fff;
+      transition: color 0.28s, transform 0.22s;
+      text-shadow: 0 1px 10px #d0d23f90;
+    }
+    .social-icons a:hover {
+      color: #7effa0;
+      transform: scale(1.17);
+    }
+    .events h2 {
+      color: #7ee3ff;
+      margin-bottom: 20px;
+    }
+    .event-card {
+      background: #191825f4;
+      border: 3px solid transparent;
+      border-image: linear-gradient(60deg, #4dc4bc, #51d665, #dbd834) 1;
+      border-radius: 13px;
+      padding: 17px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 0 15px #8e44ad44, 0 4px 9px #14141422;
+      cursor: pointer;
+    }
+    .event-card .date {
+      color: #7edfff;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+    }
+    .event-card h3 {
+      color: #fcf7ff;
+      margin: 8px 0 2px 0;
+    }
+    @media (max-width: 1020px) {
+      .profiles {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 650px) {
+      .profiles {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 10px;
+      }
+      .school-banner {
+        max-height: 160px;
+      }
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 9999; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%;
+      overflow: auto; 
+      background-color: rgba(0,0,0,0.85); 
+    }
+    .modal-content {
+      background-color: #222c42;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 600px;
+      color: #fff;
+      box-shadow: 0 0 20px #7edfff;
+      text-align: center;
+      position: relative;
+    }
+    .close {
+      color: #7eff98;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 2rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .modal-photos img {
+      width: 90px;
+      height: 60px;
+      object-fit: cover;
+      margin: 8px;
+      border-radius: 7px;
+      border: 2px solid #abad44;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center; gap: 17px;">
+      <img src="unilogo.png" alt="MITAMS Logo" />
+      <div>
+        <h1>Yearbook 2007</h1>
+        <small>"Memories that shine forever"</small>
+      </div>
+    </div>
+    <nav>
+      <button class="active" onclick="showTab('profiles', event)">Profiles</button>
+      <button onclick="showTab('events', event)">Events</button>
+    </nav>
+  </header>
+  <img src="uni.png" alt="MITAMS Campus" class="school-banner" />
+  <div class="school-info">
+    <h2>Mumbai Institute of Technology, Arts & Management Sciences (MITAMS)</h2>
+    <p><strong>Established:</strong> 1998 | <strong>Type:</strong> Private University</p>
+    <p><strong>Location:</strong> Andheri East, Mumbai – 400059 | <strong>Campus Size:</strong> ~25 acres</p>
+    <p><strong>Annual Fests:</strong> TechNova, Zephyr, Aakar, Pratibimb</p>
+  </div>
+
+  <!-- Profiles Page Content -->
+  <div class="profiles active" id="profiles" style="display: grid;">
+    <div class="student-card">
+      <div class="photo">
+        <img src="shraddha_patel07.png" alt="Student 1" style="width: 200px; height: 200px; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>SHRADDHA PATEL</h3>
+      <div class="id-number">ID No: 0709HU06111</div>
+      <div class="quote-bubble">"High school was easy. It’s like riding a bike. Except the bike was on fire."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="haseena_parker07.png" alt="Student 2" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>HASEENA PARKER</h3>
+      <div class="id-number">ID No: 0709CS09468</div>
+      <div class="quote-bubble">"Go confidently in the direction of your dreams."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://open.spotify.com/"><i class="fab fa-spotify"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="nandini_rao07.png" alt="Student 3" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>NANDINI RAO</h3>
+      <div class="id-number">ID No: 0709MG01219</div>
+      <div class="quote-bubble">"I spent 113,880 hours of my life for a paper and a handshake."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tumblr.com/blog/boldlymaliciousuniverse"><i class="fab fa-tumblr"></i></a>
+        <a href="https://medium.com/@skywardnotes"><i class="fab fa-medium"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="hardy_puttar07.png" alt="Student 4" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>HARDY PUTTAR</h3>
+      <div class="id-number">ID No:</div>
+      <div class="quote-bubble">"I would like to thank Google, Wikipedia, and whoever invented copy and paste."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://open.spotify.com/playlist/10C0qGJesIluy9rA8AQg4h"><i class="fab fa-spotify"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="shiv_saxena07.png" alt="Student 5" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>SHIV SAXENA</h3>
+      <div class="id-number">ID No: 0709HU08345</div>
+      <div class="quote-bubble">"I’m not short, I’m concentrated awesome."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="amit_pandey07.png" alt="Student 6" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>AMIT PANDEY</h3>
+      <div class="id-number">ID No: 0709AR02962</div>
+      <div class="quote-bubble">"I put the ‘pro’ in procrastinate."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.tumblr.com/blog/hiddenvirtueimp"><i class="fab fa-tumblr"></i></a>
+        <a href="https://www.flickr.com/people/203633094@N06/"><i class="fab fa-flickr"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="ahaan_padda07.png" alt="Student 7" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>AHAAN PADDA</h3>
+      <div class="id-number">ID No: 0709HU01366</div>
+      <div class="quote-bubble">"I speak fluent movie quotes."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="ananya_shroff07.png" alt="Student 8" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>ANANYA SHROFF</h3>
+      <div class="id-number">ID No:</div>
+      <div class="quote-bubble">“My computer screen is brighter than my future.”</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="jackie_kapoor07.png" alt="Student 9" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>JACKIE KAPOOR</h3>
+      <div class="id-number">ID No: 0709AR07215</div>
+      <div class="quote-bubble">"Live life with no regrets." </div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.tumblr.com/blog/awkwardlyplatinumvision"><i class="fab fa-tumblr"></i></a>
+      </div>
+    </div>
+    <div class="student-card">
+      <div class="photo">
+        <img src="aadhya_kaur07.png" alt="Student 10" style="width: 100%; height: 100%; object-fit: cover; border-radius: 9px" />
+      </div>
+      <h3>AADHYAA KAUR</h3>
+      <div class="id-number">ID No: 0709JM03098</div>
+      <div class="quote-bubble">"I graduated. So now I’m like smart and stuff."</div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://x.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.flickr.com/photos/203653385@N06/"><i class="fab fa-flickr"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Events Page Content -->
+<div class="events" id="events" style="display: none;">
+    <h2>Events & Highlights</h2>
+    <div class="event-card" onclick="showEventDetails('gamenight')">
+      <div class="date">18 August 2007</div>
+      <h3>Game Night</h3>
+      <p>An evening filled with fun and friendly competitions.</p>
+    </div>
+    <div class="event-card" onclick="showEventDetails('foodfestival')">
+      <div class="date">22 Nov 2007</div>
+      <h3>Food Festival</h3>
+      <p>A delicious celebration of culinary talents and treats.</p>
+    </div>
+    <div class="event-card" onclick="showEventDetails('pratibimb')">
+      <div class="date">05 Dec 2007</div>
+      <h3>Pratibimb</h3>
+      <p>A vibrant arts and cultural showcase by the student body.</p>
+    </div>
+  </div>
+  <!-- Modal Popup -->
+  <div id="event-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close">&times;</span>
+      <h2 id="modal-event-title"></h2>
+      <p id="modal-event-description"></p>
+      <div id="modal-event-photos" class="modal-photos"></div>
+    </div>
+  </div>
+  
+  <script>
+    const eventsData = {
+      gamenight: {
+        title: "Game Night - 18 August 2007",
+        description: `
+          Game Night was an evening dedicated to thrilling competitions and friendly camaraderie among students. Participants engaged in board games, video games, and interactive team challenges that brought out their competitive spirit and teamwork skills.
+          The event created a cheerful atmosphere where students could relax, mingle, and enjoy a break from academic pressures. Friendly rivalries sparked excitement, and prizes were awarded to winners, adding to the joyful experience.
+          Endless laughter and unforgettable memories made Game Night a highlight of the year, fostering closer bonds and a sense of community on campus.
+        `,
+        photos: ["game1.jpg", "game2.jpg"]
+      },
+      foodfestival: {
+        title: "Food Festival - 22 Nov 2007",
+        description: `
+          The Food Festival was a mouthwatering celebration of diverse culinary delights prepared by students and local vendors. The event featured a wide range of dishes from traditional favorites to innovative fusion cuisine, enticing all taste buds.
+          Attendees strolled through colorful stalls and food trucks, sampling treats while enjoying live music and cultural performances. The festival was a feast for the senses, combining the joy of food with community spirit.
+          The Food Festival strengthened cultural connections and gave students a chance to showcase their cooking talents, making it a beloved event on campus.
+        `,
+        photos: ["food1.jpg", "food2.jpg"]
+      },
+      pratibimb: {
+        title: "Pratibimb - 05 Dec 2007",
+        description: `
+          Pratibimb was a vibrant arts and cultural showcase that highlighted the creativity and talents of the student body. From painting and sculpture to dance and theater, the festival provided a platform for artistic expression in many forms.
+          Students collaborated to present breathtaking performances and exhibitions, engaging the campus community in a celebration of culture and imagination. The event nurtured artistic passion and inspired many to explore new creative horizons.
+          Pratibimb not only entertained but also built a stronger cultural fabric within the university, leaving lasting impressions on all attendees.
+        `,
+        photos: ["prati1.jpg", "prati2.jpg"]
+      }
+    };
+
+
+    function showTab(tab, event) {
+      const profilesDiv = document.getElementById('profiles');
+      const eventsDiv = document.getElementById('events');
+
+      if (tab === 'profiles') {
+        profilesDiv.style.display = 'grid';  // profiles uses grid display
+        eventsDiv.style.display = 'none';
+      } else if (tab === 'events') {
+        profilesDiv.style.display = 'none';
+        eventsDiv.style.display = 'block';
+      }
+
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function showEventDetails(eventId) {
+      const modal = document.getElementById('event-modal');
+      const title = document.getElementById('modal-event-title');
+      const description = document.getElementById('modal-event-description');
+      const photosContainer = document.getElementById('modal-event-photos');
+
+      const event = eventsData[eventId];
+      if (!event) return;
+
+      title.innerText = event.title;
+      description.innerText = event.description;
+
+      photosContainer.innerHTML = '';
+      event.photos.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        photosContainer.appendChild(img);
+      });
+
+      modal.style.display = 'block';
+    }
+
+    // Close modal handlers
+    document.getElementById('close-modal').onclick = function() {
+      document.getElementById('event-modal').style.display = 'none';
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('event-modal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
